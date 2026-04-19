@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------- */
+/* People of Data — Tailwind v4 theme                                */
+/* Mirrors /lib/design-tokens.ts. Keep in sync — tokens are law.     */
+/* ---------------------------------------------------------------- */
+
+@theme {
+  /* Fonts (loaded via next/font in app/layout.tsx) */
+  --font-jakarta: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-inter: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: var(--font-arabic), var(--font-inter), ui-sans-serif, sans-serif;
+  --default-font-family: var(--font-inter);
+
+  /* Brand — Blue */
+  --color-blue-50: #EFF4FE;
+  --color-blue-100: #DBE5FC;
+  --color-blue-500: #3B72E8;
+  --color-blue-600: #1A56DB;
+  --color-blue-700: #1444B0;
+  --color-blue-900: #0A2260;
+
+  /* Heritage — Gold */
+  --color-gold-100: #F7EDD3;
+  --color-gold-500: #D4A843;
+  --color-gold-600: #B8912F;
+
+  /* Innovation — Teal */
+  --color-teal-100: #DDF3FD;
+  --color-teal-500: #0EA5E9;
+  --color-teal-600: #0284C7;
+
+  /* Surfaces */
+  --color-surface-base: #F8FAFC;
+  --color-surface-raised: #FFFFFF;
+  --color-surface-sunken: #F1F5F9;
+  --color-surface-inverse: #0B1120;
+  --color-surface-inverseRaised: #111A2E;
+
+  /* Text */
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #64748B;
+  --color-text-onDark: #F8FAFC;
+  --color-text-onDarkMuted: #94A3B8;
+  --color-text-onAccent: #FFFFFF;
+  --color-text-onGold: #0B1120;
+
+  /* Borders */
+  --color-border-subtle: #E2E8F0;
+  --color-border-default: #CBD5E1;
+  --color-border-strong: #94A3B8;
+  --color-border-onDark: #1E293B;
+
+  /* Semantic */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #E11D48;
+
+  /* Radii — our scale maps onto Tailwind's named radii */
+  --radius-none: 0;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Shadows — navy-tinted, never pure black */
+  --shadow-xs: 0 1px 2px 0 rgb(11 17 32 / 0.05);
+  --shadow-sm: 0 2px 4px -1px rgb(11 17 32 / 0.06), 0 1px 2px -1px rgb(11 17 32 / 0.04);
+  --shadow-md: 0 8px 16px -4px rgb(11 17 32 / 0.08), 0 4px 8px -2px rgb(11 17 32 / 0.04);
+  --shadow-lg: 0 16px 32px -8px rgb(11 17 32 / 0.10), 0 8px 16px -4px rgb(11 17 32 / 0.06);
+  --shadow-focus: 0 0 0 3px rgb(26 86 219 / 0.25);
+  --shadow-focus-gold: 0 0 0 3px rgb(212 168 67 / 0.3);
+
+  /* Layout tokens (fluid) */
+  --spacing-section: clamp(5rem, 8vw, 9rem);
+  --spacing-container: clamp(1.5rem, 5vw, 4rem);
+  --spacing-gutter: clamp(1rem, 2vw, 2rem);
+
+  /* Max content width */
+  --container-page: 1280px;
+}
+
+/* Custom utilities for the three fluid spacing tokens ------------- */
+@utility py-section {
+  padding-block: var(--spacing-section);
+}
+@utility px-container {
+  padding-inline: var(--spacing-container);
+}
+@utility gap-gutter {
+  gap: var(--spacing-gutter);
+}
+
+/* Base ----------------------------------------------------------- */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-surface-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display typography defaults to Jakarta */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-jakarta);
+}
+
+/* Focus ring — visible, brand-colored, offset */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+}
+
+/* Respect reduced motion at the CSS layer too */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Selection */
+::selection {
+  background: var(--color-gold-500);
+  color: var(--color-text-onGold);
+}
